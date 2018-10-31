@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
+const router = express.Router();
 const app = express();
 
 // Database Connections
@@ -13,14 +14,15 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/unemployed', { 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error'))
 mongoose.Promise = global.Promise;
 
-// Passport setup 
+// Passport setup
 require('./services/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Controllers
-require('./controllers/pages')(app);
+// require('./controllers/pages')(app);
 require('./controllers/auth')(app, passport);
+require('./controllers/posts')(app);
 
 // Middleware
 app.engine('hbs', exphbs({ extname: 'hbs' }));
@@ -39,4 +41,4 @@ app.use(cookieSession({
 
 app.listen(5000, console.log("Listening on 5000"));
 
-
+module.exports = app;
