@@ -6,8 +6,8 @@ const UserSchema = new Schema ({
     updatedAt: { type: Date },
     name: { type: String, required: true },
     googleId: { type: String, required: true },
-    posts: [{ type: Schema.Types.ObjectId, ref: 'Post'}]
-
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post'}],
+    type: { type: String, required: true, default: 'user' }
 });
 
 module.exports = mongoose.model('User', UserSchema);

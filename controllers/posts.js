@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Post = require('../models/post');
+const Industry = require('../models/industry');
 
 module.exports = function(app) {
     //GET: renders home page (feed for now)
@@ -12,29 +13,23 @@ module.exports = function(app) {
         })
     })
 
-
     //GET: renders new post form
     app.get('/posts/new', (req, res) => {
         res.render('posts-new');
-    })
+    });
     // POST route: creates a new post.
     app.post('/posts', (req, res) => {
         post = new Post(req.body);
         post.author = req.user._id;
-
-        if(post.type = 'admin-post') {
-            // write logic for admin posts
-        } else {
-            post.save().then(response => {
-                return User.findById(req.user._id)
+        post.save().then(post => {
+            return User.findById(req.user._id)
         }).then(user => {
             user.posts.unshift(post);
             user.save();
             return res.redirect('/');
         }).catch(err => {
             console.log(err.message);
-        })
-
-        }
-    })
+        });
+    });
+    
 }
