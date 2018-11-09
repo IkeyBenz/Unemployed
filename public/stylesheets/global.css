@@ -1,7 +1,21 @@
 .navbar-brand {
-    width: 4%;
+    height: 3em;
 }
 .navbar-brand img {
-    width: 100%;
-    height: auto;
+    height: 100%;
+    width: auto;
+}
+
+body {
+    font-size: 24px;
+}
+
+
+.posts-container {
+    margin: auto;
+    
+}
+
+.post-card {
+    margin: auto;
 }

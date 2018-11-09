@@ -6,7 +6,6 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
-const router = express.Router();
 const app = express();
 
 // Database Connections
@@ -19,19 +18,18 @@ require('./services/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Middleware
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }));
+app.set('view engine', 'hbs');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
+app.use(express.static('public'));
+
 // Controllers
 // require('./controllers/pages')(app);
 require('./controllers/auth')(app, passport);
 require('./controllers/posts')(app);
-
-// Middleware
-app.engine('hbs', exphbs({ defaultLayout: 'main.hbs' }));
-app.set('view engine', 'hbs');
-app.use(bodyParser.json());
-app.use(methodOverride('_method'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'));
-
 
 // Session Handling
 app.use(cookieSession({

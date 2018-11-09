@@ -1,0 +1,9 @@
+.sidebar {
+    width: 240px !important;
+    height: calc(100vh - 76px);
+    padding: 16px;
+    background-color: lightgray;
+}
+.fa-user-circle {
+    font-size: 2em;
+}

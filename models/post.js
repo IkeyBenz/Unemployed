@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
     createdAt: { type: Date, defualt: Date.now() },
-    title: { type: String },
-    content: { type: String },
+    title: { type: String, required: true },
+    content: { type: String, required: true },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: false },
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     postType: { type: String, required: true }

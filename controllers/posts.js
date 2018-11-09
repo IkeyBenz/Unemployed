@@ -18,19 +18,31 @@ module.exports = function(app) {
         res.render('posts-new');
     });
     // POST route: creates a new post.
+    // app.post('/posts', (req, res) => {
+    //     post = new Post(req.body);
+    //     console.log(req);
+    //     User.findOne({googleId: req.user.googleId}).then(user => {
+    //         post.author = user._id;
+    //         user.posts.unshift(post);
+    //         user.save();
+    //         return post.save()
+    //     }).then(post => {
+    //         return res.redirect('/');
+    //     }).catch(err => {
+    //         console.log(err.message);
+    //     });
+    // });
+        /////////Temporary route.... need to fix user 
     app.post('/posts', (req, res) => {
-        post = new Post(req.body);
-        console.log(req);
-        User.findOne({googleId: req.user.googleId}).then(user => {
-            post.author = user._id;
-            user.posts.unshift(post);
-            user.save();
-            return post.save()
-        }).then(post => {
-            return res.redirect('/');
-        }).catch(err => {
-            console.log(err.message);
-        });
-    });
+        console.log(req.body);
+        const post = new Post(req.body);
+        post.save().then(post => {
+            console.log(post)
 
+            return res.redirect('/');
+
+        }).catch(err => {
+            console.log(err.message)
+        })
+    })
 }

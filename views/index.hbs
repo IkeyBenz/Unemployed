@@ -1,9 +1,11 @@
 <!-- Page will not actually display user posts. The each statement is currently setup for testing user posts  -->
 <h1>Feed</h1>
-
+<div class="posts-container">
 {{#each posts}}
- {{>post}}
+    {{> post}}
 {{/each}}
+</div>
+
 
 <a href="/posts/new">Make New Post</a>
 <a href="/auth/google">Login With Google</a>
