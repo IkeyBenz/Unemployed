@@ -25,7 +25,7 @@ require('./controllers/auth')(app, passport);
 require('./controllers/posts')(app);
 
 // Middleware
-app.engine('hbs', exphbs({ extname: 'hbs' }));
+app.engine('hbs', exphbs({ defaultLayout: 'main.hbs' }));
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
