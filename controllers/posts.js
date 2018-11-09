@@ -20,16 +20,17 @@ module.exports = function(app) {
     // POST route: creates a new post.
     app.post('/posts', (req, res) => {
         post = new Post(req.body);
-        post.author = req.user._id;
-        post.save().then(post => {
-            return User.findById(req.user._id)
-        }).then(user => {
+        console.log(req);
+        User.findOne({googleId: req.user.googleId}).then(user => {
+            post.author = user._id;
             user.posts.unshift(post);
             user.save();
+            return post.save()
+        }).then(post => {
             return res.redirect('/');
         }).catch(err => {
             console.log(err.message);
         });
     });
-    
+
 }

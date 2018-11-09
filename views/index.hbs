@@ -2,10 +2,7 @@
 <h1>Feed</h1>
 
 {{#each posts}}
-<h2>{{this.title}}</h2>
-<small>{{this.author.name}}</small>
-<hr>
-<p>{{this.content}}</p>
+ {{>post}}
 {{/each}}
 
 <a href="/posts/new">Make New Post</a>
