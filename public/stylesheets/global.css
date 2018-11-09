@@ -19,3 +19,7 @@ body {
 .post-card {
     margin: auto;
 }
+
+.btn-primary {
+    background-color: var(--primary) !important;
+}
