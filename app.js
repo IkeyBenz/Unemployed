@@ -28,10 +28,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/unemployed', { 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error'))
 mongoose.Promise = global.Promise;
 
-// Controllers
-// require('./controllers/pages')(app);
-app.use('/', authController);
-app.use('/', postController);
+
 
 
 // Setting up imported Middleware
@@ -43,6 +40,10 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 // app.use(checkAuth);
 
+// Controllers
+// require('./controllers/pages')(app);
+app.use('/', authController);
+app.use('/', postController);
 
 app.listen(5000, console.log("Listening on 5000"));
 
