@@ -4,6 +4,8 @@ const User = require('../models/user');
 const Post = require('../models/post');
 const Industry = require('../models/industry');
 const checkAuth = require('../middleware/check-auth');
+
+
     //GET: renders home page (feed for now)
     // // TODO: need to setup industries so feed can be customized to certain industry
     router.get('/', (req, res) => { ///TEMPORARY ROUTE LOGIC
@@ -39,6 +41,7 @@ const checkAuth = require('../middleware/check-auth');
     router.post('/posts', (req, res) => {
         console.log(req.body);
         const post = new Post(req.body);
+        post.postType = 'Admin';
         post.save().then(post => {
             console.log(post)
 

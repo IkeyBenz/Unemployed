@@ -11,8 +11,8 @@ function(req, res) {
 
 
 router.get('/logout', (req, res) => {
-    console.log('logging user out!');
     req.logout();
+    res.redirect('/');
 });
 
 module.exports = router;
