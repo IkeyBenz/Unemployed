@@ -1,13 +1,18 @@
-module.exports = function (app, passport) {
+const passport = require('passport');
+const express = require('express');
+const router = express.Router();
 
-    app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email']}))
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email']}))
 
-    app.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/login'}),
-    function(req, res) {
-        res.redirect('/');
-    });
-
-}
+router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/login'}),
+function(req, res) {
+    res.redirect('/');
+});
 
 
+router.get('/logout', (req, res) => {
+    console.log('logging user out!');
+    req.logout();
+});
 
+module.exports = router;

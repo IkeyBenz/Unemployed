@@ -11,9 +11,15 @@ body {
 }
 
 
+/*==================
+POST--SECTION--------
+=====================*/
+
 .posts-container {
     margin: auto;
-    
+    background: lightgray;
+    padding: 24px;
+
 }
 
 .post-card {

@@ -1,12 +1,15 @@
+const express = require('express');
+const router = express.Router();
 const User = require('../models/user');
 const Post = require('../models/post');
 const Industry = require('../models/industry');
-
-module.exports = function(app) {
+const checkAuth = require('../middleware/check-auth');
     //GET: renders home page (feed for now)
     // // TODO: need to setup industries so feed can be customized to certain industry
-    app.get('/', (req, res) => { ///TEMPORARY ROUTE LOGIC
+    router.get('/', (req, res) => { ///TEMPORARY ROUTE LOGIC
         Post.find({}).then(posts => {
+            console.log(req.user)
+            console.log('Above is the req.user ');
             res.render('index', {posts: posts})
         }).catch(err => {
             console.log(err.message);
@@ -14,8 +17,8 @@ module.exports = function(app) {
     })
 
     //GET: renders new post form
-    app.get('/posts/new', (req, res) => {
-        res.render('posts-new');
+    router.get('/posts/new', checkAuth, (req, res) => {
+        res.render('posts-new')
     });
     // POST route: creates a new post.
     // app.post('/posts', (req, res) => {
@@ -32,8 +35,8 @@ module.exports = function(app) {
     //         console.log(err.message);
     //     });
     // });
-        /////////Temporary route.... need to fix user 
-    app.post('/posts', (req, res) => {
+        /////////Temporary route.... need to fix user
+    router.post('/posts', (req, res) => {
         console.log(req.body);
         const post = new Post(req.body);
         post.save().then(post => {
@@ -45,4 +48,4 @@ module.exports = function(app) {
             console.log(err.message)
         })
     })
-}
+module.exports = router;
