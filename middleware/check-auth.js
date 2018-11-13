@@ -13,10 +13,10 @@
 const checkAuth = function(req, res, next) {
     if(!req.user) {
         res.redirect('/');
-        console.log('')
+        console.log('user is not logged in.')
     } else {
         return next();
     }
 }
 
-module.exports = checkAuth 
+module.exports = checkAuth

@@ -12,6 +12,15 @@ body {
 
 
 /*==================
+------Index Styling------
+====================*/
+.feed-header {
+    text-align: center;
+    margin-bottom: 24px;    
+}
+
+
+/*==================
 POST--SECTION--------
 =====================*/
 

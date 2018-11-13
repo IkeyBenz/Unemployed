@@ -23,25 +23,33 @@ const checkAuth = require('../middleware/check-auth');
         res.render('posts-new')
     });
     // POST route: creates a new post.
-    // app.post('/posts', (req, res) => {
-    //     post = new Post(req.body);
-    //     console.log(req);
-    //     User.findOne({googleId: req.user.googleId}).then(user => {
-    //         post.author = user._id;
-    //         user.posts.unshift(post);
-    //         user.save();
-    //         return post.save()
-    //     }).then(post => {
-    //         return res.redirect('/');
-    //     }).catch(err => {
-    //         console.log(err.message);
-    //     });
-    // });
+    router.post('/posts', checkAuth, (req, res) => {
+        const post = new Post(req.body);
+        post.author = req.user._id;
+        post.save().then(post => {
+            return User.findById(req.user._id);
+        }).then(user => {
+            user.posts.unshift(post);
+            user.save();
+            return res.redirect(`/posts/${post._id}`);
+        }).catch(console.error)
+    })
+
+    ////GET: Show indiviaul post
+    router.get('/posts/:id', (req, res) => {
+        Post.findById(req.params.id).populate('author').populate({
+            path: 'comments',
+            populate: {
+                path: 'author'
+            }
+        }).then(post => {
+            res.render('posts-show', { post: post });
+        }).catch(console.error)
+    })
         /////////Temporary route.... need to fix user
     router.post('/posts', (req, res) => {
-        console.log(req.body);
         const post = new Post(req.body);
-        post.postType = 'Admin';
+        post.postType = 'admin';
         post.save().then(post => {
             console.log(post)
 
@@ -51,4 +59,7 @@ const checkAuth = require('../middleware/check-auth');
             console.log(err.message)
         })
     })
+
+
+
 module.exports = router;

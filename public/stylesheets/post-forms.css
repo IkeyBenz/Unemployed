@@ -1,0 +1,21 @@
+.form-contents {
+    margin: auto;
+    margin-top: 72px;
+}
+
+.posts-form {
+    background: lightgray;
+    padding: 24px;
+}
+
+.custom-select {
+    font-size: 0.70em;
+}
+
+.posts-title-input {
+    font-size: 0.70em;
+}
+
+.posts-content-input {
+    font-size: 0.70em;
+}

@@ -7,6 +7,7 @@ const passport = require('passport');
 const passportSetup = require('./services/passport');
 const authController = require('./controllers/auth');
 const postController = require('./controllers/posts');
+const commentController = require('./controllers/comments');
 const cookieSession = require('cookie-session');
 
 const mongoose = require('mongoose');
@@ -44,6 +45,7 @@ app.use(express.static('public'));
 // require('./controllers/pages')(app);
 app.use('/', authController);
 app.use('/', postController);
+app.use('/', commentController);
 
 app.listen(5000, console.log("Listening on 5000"));
 

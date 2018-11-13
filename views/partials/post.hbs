@@ -1,12 +1,9 @@
 <div class="post-card container">
-    <h2 class="post-title">{{this.title}}</h2>
+    <h2 class="post-title"><a class="post-title-link" href="/posts/{{this._id}}">{{this.title}}</a></h2>
     <p class="post-content">{{this.content}}</p>
     <div class="divider"></div>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#commentsCollapse" aria-expanded="false" aria-controls="commentsCollapse">
-    Comments &darr;
-    </button>
-    <div class="collapse" id="commentsCollapse">
-      <div class="card card-body">
+      <div class="index-comment-section">
+          <h3 class="lead comment-section-header">Comments: </h3>
         {{#each this.comments}}
         <div class="comment-container">
             <h5>{{this.author.name}}</h5>
@@ -14,5 +11,11 @@
         </div>
         {{/each}}
       </div>
-   </div>
+      <hr>
 </div>
+
+
+<!-- This is the accordion button we were messing with to toggle the comments section... Think this is clunky and there is a better way to get this done-->
+<!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#commentsCollapse" aria-expanded="false" aria-controls="commentsCollapse">
+Comments &darr;
+</button> -->
