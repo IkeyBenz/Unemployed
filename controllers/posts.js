@@ -12,7 +12,7 @@ const checkAuth = require('../middleware/check-auth');
         Post.find({}).then(posts => {
             console.log(req.user)
             console.log('Above is the req.user ');
-            res.render('index', {posts: posts})
+            res.render('index', { posts: posts, user: req.user })
         }).catch(err => {
             console.log(err.message);
         })

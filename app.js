@@ -46,6 +46,7 @@ app.use(express.static('public'));
 app.use('/', authController);
 app.use('/', postController);
 app.use('/', commentController);
+app.use('/', require('./controllers/users'));
 
 app.listen(5000, console.log("Listening on 5000"));
 

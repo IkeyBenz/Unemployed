@@ -6,6 +6,9 @@ const UserSchema = new Schema ({
     updatedAt: { type: Date },
     name: { type: String, required: true },
     googleId: { type: String, required: true },
+    bio: { type: String, required: false },
+    profilePicture: { type: String, required: false },
+    age: { type: Number, required: false },
     posts: [{ type: Schema.Types.ObjectId, ref: 'Post'}],
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
     type: { type: String, required: true, default: 'user' }
