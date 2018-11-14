@@ -1,0 +1,11 @@
+{{!-- Temporary --}}
+<h1>Users</h1>
+<ul class="list-group">
+{{#each users}}
+<li class="list-group-item">
+    <a href="/users/{{this._id}}"><h3>{{this.name}}</h3></a>
+    <h5>{{this.age}}</h5>
+    <p>{{this.bio}}</p>
+</li>
+{{/each}}
+</ul>

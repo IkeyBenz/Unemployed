@@ -45,7 +45,7 @@
         <main class="container-fluid">
             <div class="row">
                 <aside class="sidebar col-sm-2">
-                    <span><i class="fas fa-user-circle"></i> Ikey Benzaken</span>
+                    <span><i class="fas fa-user-circle"></i> {{#if user.name}}{{user.name}}{{else}}Login to see your profile!{{/if}}</span>
                     <a href="/users/{{user._id}}"><h5>Profile</h5></a>
                     <h5>Friends</h5>
                     <h5>Communities</h5>
