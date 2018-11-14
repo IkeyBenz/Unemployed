@@ -1,0 +1,15 @@
+.posts-show-container {
+    border: solid black;
+    margin: auto;
+    margin-top: 72px;
+    padding: 40px;
+    padding-top: 16px;
+}
+
+.posts-header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    font-size: .7em;
+    margin-bottom: 24px;
+}

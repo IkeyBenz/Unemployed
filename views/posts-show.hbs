@@ -1,26 +1,30 @@
-<h1 class="display-4">{{post.title}}</h1>
-  <small>User: {{post.author.name}}</small>
-  <hr class="my-4">
-  <p class="lead post-content">{{post.content}}</p>
-  <hr class="my-4">
-  <div class="post-footer">
-      <!-- <div class="post-category">Category: {{post.category}}</div> -->
-  </div>
-
-  <div class="comment-section">
-<hr>
-    <form action="/posts/{{post._id}}/comments" method="post" class="comment-form">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <button class="input-group-text" type="submit" id="addCommentBtn">Add A Comment</button>
-      </div>
-      <textarea class="form-control" name="content" aria-label="With textarea" placeholder="Enter comment here ..."></textarea>
+<div class="posts-show-container">
+    <div class="posts-header">
+        <div class="post-category">Category: {{post.category}}</div>
+        <div class="post-author">User: {{post.author.name}}</div>
     </div>
-    </form>
+    <h1 class="display-4">{{post.title}}</h1>
+      <hr class="my-4">
+      <p class="lead post-content">{{post.content}}</p>
+      <hr class="my-4">
 
-{{#each post.comments}}
-    <p class="comment-display">{{this.content}}</p>
-    <p class="lead">User: {{this.author.name}}</p>
-    <hr class="seperator">
-{{/each}}
+
+      <div class="comment-section">
+    <hr>
+        <form action="/posts/{{post._id}}/comments" method="post" class="comment-form">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="input-group-text" type="submit" id="addCommentBtn">Add A Comment</button>
+          </div>
+          <textarea class="form-control" name="content" aria-label="With textarea" placeholder="Enter comment here ..."></textarea>
+        </div>
+        </form>
+
+    {{#each post.comments}}
+        <p class="comment-display">{{this.content}}</p>
+        <p class="lead">User: {{this.author.name}}</p>
+        <hr class="seperator">
+    {{/each}}
+    </div>
+
 </div>
