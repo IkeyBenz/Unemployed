@@ -1,13 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const methodOverride = require('method-override');
 const passport = require('passport');
-const passportSetup = require('./services/passport');
-const authController = require('./controllers/auth');
-const postController = require('./controllers/posts');
-const commentController = require('./controllers/comments');
+require('./services/passport');
 const cookieSession = require('cookie-session');
 
 const mongoose = require('mongoose');
@@ -37,14 +34,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
-// app.use(checkAuth);
 
 // Controllers
-// require('./controllers/pages')(app);
-app.use('/', authController);
-app.use('/', postController);
-app.use('/', commentController);
-app.use('/users', require('./controllers/users'));
+require('./controllers/auth')(app);
+require('./controllers/users')(app);
+require('./controllers/posts')(app);
+require('./controllers/comments')(app);
 
 app.listen(5000, console.log("Listening on 5000"));
 
