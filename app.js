@@ -20,6 +20,7 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: [process.env.COOKIE_KEY]
 }));
+
 // Passport setup
 app.use(passport.initialize());
 app.use(passport.session());
@@ -28,9 +29,6 @@ app.use(passport.session());
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/unemployed', { useNewUrlParser: true });
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error'))
 mongoose.Promise = global.Promise;
-
-
-
 
 // Setting up imported Middleware
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }));
