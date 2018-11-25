@@ -1,13 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const methodOverride = require('method-override');
 const passport = require('passport');
-const passportSetup = require('./services/passport');
-const authController = require('./controllers/auth');
-const postController = require('./controllers/posts');
-const commentController = require('./controllers/comments');
+require('./services/passport');
 const cookieSession = require('cookie-session');
 
 const mongoose = require('mongoose');
@@ -20,6 +17,7 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: [process.env.COOKIE_KEY]
 }));
+
 // Passport setup
 app.use(passport.initialize());
 app.use(passport.session());
@@ -29,9 +27,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/unemployed', { 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error'))
 mongoose.Promise = global.Promise;
 
-
-
-
 // Setting up imported Middleware
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }));
 app.set('view engine', 'hbs');
@@ -39,14 +34,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
-// app.use(checkAuth);
 
 // Controllers
-// require('./controllers/pages')(app);
-app.use('/', authController);
-app.use('/', postController);
-app.use('/', commentController);
-app.use('/', require('./controllers/users'));
+require('./controllers/auth')(app);
+require('./controllers/users')(app);
+require('./controllers/posts')(app);
+require('./controllers/comments')(app);
 
 app.listen(5000, console.log("Listening on 5000"));
 

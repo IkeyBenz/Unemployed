@@ -1,16 +1,4 @@
-// module.exports = {
-//     ///Create CheckAuth Middleware
-//     const checkAuth = (req, res, next) => {
-//         if(!req.user) {
-//             res.redirect('/')
-//             console.log('user is not logged in')
-//         } else {
-//             next();
-//         }
-//     }
-// }
-
-const checkAuth = function(req, res, next) {
+module.exports = function(req, res, next) {
     if(!req.user) {
         res.redirect('/');
         console.log('user is not logged in.')
@@ -18,5 +6,3 @@ const checkAuth = function(req, res, next) {
         return next();
     }
 }
-
-module.exports = checkAuth

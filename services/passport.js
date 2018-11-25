@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/user');
 
-////finds user id and attaches to cookie to track a users session
+// finds user id and attaches to cookie to track a users session
 passport.serializeUser((user, done) => {
     done(null, user.id)
 });
@@ -10,8 +10,8 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     User.findById(id).then(user => {
         done(null, user);
-    })
-})
+    });
+});
 
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
