@@ -5,60 +5,50 @@ const checkAuth = require('../middleware/check-auth');
 
 module.exports = function (app) {
 
-    //GET: renders home page (feed for now)
+    //GET: sends JSON response containing array of post objects  (feed for now)
     // // TODO: need to setup industries so feed can be customized to certain industry
-    app.get('/', (req, res) => { ///TEMPORARY ROUTE LOGIC
+    app.get('/posts', (req, res) => {
         Post.find({}).then(posts => {
-            console.log(req.user);
-            console.log('Above is the req.user ');
-            res.render('index', { posts: posts, user: req.user })
+            console.log('In the GET /posts route ...')
+            res.json(posts)
         }).catch(err => {
             console.log(err.message);
         });
     });
 
-    //GET: renders new post form
-    app.get('/posts/new', checkAuth, (req, res) => {
-        res.render('posts-new');
-    });
 
     // POST route: creates a new post.
-    app.post('/posts', checkAuth, (req, res) => {
-        const post = new Post(req.body);
-        post.author = req.user._id;
-        post.save().then(post => {
-            return User.findById(req.user._id);
-        }).then(user => {
-            user.posts.unshift(post);
-            user.save();
-            return res.redirect(`/posts/${post._id}`);
-        }).catch(console.error);
-    });
-
-    // GET: Show individual post
-    app.get('/posts/:id', (req, res) => {
-        Post.findById(req.params.id).populate('author').populate({
-            path: 'comments',
-            populate: { path: 'author' }
-        }).then(post => {
-            res.render('posts-show', { post: post });
-        }).catch(console.error);
-    });
-
-    // Temporary route.... need to fix user
+    // app.post('/posts', (req, res) => {
+    //     const post = new Post(req.body);
+    //     post.save().then(post => {
+    //         return User.findById(req.user._id);
+    //     }).then(user => {
+    //         user.posts.unshift(post);
+    //         user.save();
+    //         return res.status(200).send('Post successfully created!')
+    //     }).catch(console.error);
+    // });
+//////// NOTE: Temp POST route until we figure out Auth with React////
     app.post('/posts', (req, res) => {
         const post = new Post(req.body);
-        post.postType = 'admin';
         post.save().then(post => {
-            console.log(post)
-
-            return res.redirect('/');
-
+            console.log(post);
+            res.status(200).send('Post successfully Created!')
         }).catch(err => {
-            console.log(err.message)
-        });
-    });
+            console.log(err.message);
+            res.status(400).send(err)
+        })
+    })
 
+    // GET: Show individual post // QUESTION: Do we need this any longer?
+    // app.get('/posts/:id', (req, res) => {
+    //     Post.findById(req.params.id).populate('author').populate({
+    //         path: 'comments',
+    //         populate: { path: 'author' }
+    //     }).then(post => {
+    //         res.render('posts-show', { post: post });
+    //     }).catch(console.error);
+    // });
+
+    // Temporary route.... need to fix user
 }
-
-

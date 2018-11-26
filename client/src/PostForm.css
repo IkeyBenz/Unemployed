@@ -1,0 +1,55 @@
+.PostForm-container {
+    width: 70%;
+    border: solid black;
+    margin: auto;
+    margin-top: 88px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-post-form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.post-form-label {
+    text-align: left;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    font-size: .8em;
+
+}
+
+.form-div {
+    margin: auto;
+    width: 75%;
+    padding: 16px;
+}
+
+.post-title-input {
+    width: 80%;
+    height: 24px;
+    margin: auto;
+    font-size: 1em;
+    padding: 4px;
+
+}
+
+.post-content-input {
+    width: 80%;
+    margin: auto;
+    font-size: 1em;
+    padding: 4px;
+    height: 80px;
+}
+
+.post-submit-btn {
+    height: 32px;
+    width: 20%;
+
+    margin-top: 24px;
+
+
+}

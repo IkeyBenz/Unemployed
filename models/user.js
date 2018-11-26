@@ -11,6 +11,7 @@ const UserSchema = new Schema ({
     age: { type: Number, required: false },
     posts: [{ type: Schema.Types.ObjectId, ref: 'Post'}],
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
+    
     type: { type: String, required: true, default: 'user' }
 });
 

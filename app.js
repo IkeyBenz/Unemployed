@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
 require('dotenv').config();
 const methodOverride = require('method-override');
 const passport = require('passport');
@@ -28,8 +27,6 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 mongoose.Promise = global.Promise;
 
 // Setting up imported Middleware
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }));
-app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
