@@ -9,8 +9,18 @@ module.exports = function (app) {
     // // TODO: need to setup industries so feed can be customized to certain industry
     app.get('/posts', (req, res) => {
         Post.find({}).then(posts => {
-            console.log('In the GET /posts route ...')
-            res.json(posts)
+            const newPosts = posts.map(async (post) => {
+                let editedPost = post;
+                await User.find({_id: post.author}).then(author => {
+                    console.log(author);
+                    editedPost['author'] = author;
+                });
+                return editedPost;
+            });
+            Promise.all(newPosts).then(posts => {
+                console.log(posts);
+                res.json(posts);
+            });
         }).catch(err => {
             console.log(err.message);
         });

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -14,17 +13,19 @@ class Post extends Component {
             isLoading: true
         }
 
-        this.fetchPost = this.fetchPost.bind(this);
-        this.fetchComments = this.fetchComments.bind(this);
+        // this.fetchPost = this.fetchPost.bind(this);
+        // this.fetchComments = this.fetchComments.bind(this);
+
     }
 
-    fetchPost() {
-        ...
-    }
+    // fetchPost() {
+     
+    // }
 
-    fetchComments() {
-        ...
-    }
+    // fetchComments() {
+        
+    // }
+
 
     render() {
         return (

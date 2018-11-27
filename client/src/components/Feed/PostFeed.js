@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../PostFeed.css';
+import '../../PostFeed.css';
+import PreviewPost from './PreviewPost';
 
 class PostFeed extends Component {
     constructor(props) {
@@ -11,20 +12,14 @@ class PostFeed extends Component {
 
         this.fetchPosts = this.fetchPosts.bind(this);
     }
+    
     componentDidMount() {
         console.log('mounted')
         this.fetchPosts();
     }
-
     fetchPosts() {
         fetch('/posts')
         .then(res => res.json())
-        .then(parsedJson => parsedJson.map(post => ({
-            key: post._id,
-            title: post.title,
-            content: post.content,
-            type: post.postType
-        })))
         .then(posts => this.setState({
             posts,
             isLoading: false
@@ -40,20 +35,13 @@ class PostFeed extends Component {
                 <h1 className="feed-header">Global Feed</h1>
                 <div className="posts-container">
                 {
-                    !isLoading && posts.length > 0 ? posts.map(post => {
-                        console.log(post);
+                    !isLoading && posts.length > 0 
+                    ? posts.map(post => {
                         return (
-                            <div className="post-card" key={ post.key }>
-                                <h2 className="post-title">{ post.title }</h2>
-                                <p className="post-content">{ post.content }</p>
-                                <div className="post-card-footer">
-                                    <p className="post-category">Category</p>
-                                    <p className="post-author">Author</p>
-                                    <p className="post-type">{ post.postType }</p>
-                                </div>
-                            </div>
+                           <PreviewPost {...post} /> 
                         )
-                    }) : null
+                    })
+                    : null
                 }
                 </div>
             </div>

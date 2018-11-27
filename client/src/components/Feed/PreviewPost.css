@@ -1,0 +1,43 @@
+
+.PreviewPost {
+    border: solid black;
+    border-width: thin;
+    margin-bottom: 24px;
+    padding: 8px;
+    background-color: #FFFFF0;
+    box-shadow: 2px 2px 9px 3px rgba(0,0,0,0.75);
+
+}
+
+
+.post-content {
+    text-overflow: ellipsis;
+        
+}
+
+.post-title, .post-date {
+    margin-top: 8px;
+}
+
+
+
+
+
+.post-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.post-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
+
+.post-author, .post-category {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-left: 16px;
+    font-size: .75em;
+}
