@@ -6,13 +6,15 @@ import PostFeed from './Feed/PostFeed';
 import PostForm from './PostForm';
 
 class App extends Component {
+    
+
+
   render() {
     return (
     <BrowserRouter>
       <div className="App">
         <Route path='/' exact component={ PostFeed } />
         <Route path='/posts/new' exact component={ PostForm } />
-        {/* <Route path='/posts/:postId' exact component={ Post } /> */}
       </div>
      </ BrowserRouter>
     );

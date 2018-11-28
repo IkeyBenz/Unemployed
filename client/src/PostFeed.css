@@ -1,3 +1,9 @@
+.big-flex {
+    display: flex;
+    flex-direction: row;
+    
+}
+
 .PostFeed-container {
     width: 80%;
     margin: auto;
@@ -14,7 +20,7 @@
     border-bottom: solid black;
     border-width: thin;
     margin-bottom: 32px;
-    
+
 }
 
 .post-title {

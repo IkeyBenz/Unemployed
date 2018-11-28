@@ -8,23 +8,10 @@ module.exports = function (app) {
     //GET: sends JSON response containing array of post objects  (feed for now)
     // // TODO: need to setup industries so feed can be customized to certain industry
     app.get('/posts', (req, res) => {
-        Post.find({}).then(posts => {
-            const newPosts = posts.map(async (post) => {
-                let editedPost = post;
-                await User.find({_id: post.author}).then(author => {
-                    console.log(author);
-                    editedPost['author'] = author;
-                });
-                return editedPost;
-            });
-            Promise.all(newPosts).then(posts => {
-                console.log(posts);
-                res.json(posts);
-            });
-        }).catch(err => {
-            console.log(err.message);
-        });
-    });
+        Post.find({}).populate('author').then(posts => {
+            return res.json(posts)
+        }).catch(console.error)
+    })
 
 
     // POST route: creates a new post.
@@ -38,7 +25,7 @@ module.exports = function (app) {
     //         return res.status(200).send('Post successfully created!')
     //     }).catch(console.error);
     // });
-//////// NOTE: Temp POST route until we figure out Auth with React////
+/// NOTE: Temp POST route until we figure out Auth with React////
     app.post('/posts', (req, res) => {
         const post = new Post(req.body);
         post.save().then(post => {

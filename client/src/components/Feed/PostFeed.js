@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../../PostFeed.css';
 import PreviewPost from './PreviewPost';
+import TopNav from '../TopNav';
+import Sidebar from '../Sidebar';
 
 class PostFeed extends Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class PostFeed extends Component {
 
         this.fetchPosts = this.fetchPosts.bind(this);
     }
-    
+
     componentDidMount() {
         console.log('mounted')
         this.fetchPosts();
@@ -31,19 +33,26 @@ class PostFeed extends Component {
     render() {
         const { isLoading, posts } = this.state;
         return (
-            <div className="PostFeed-container">
-                <h1 className="feed-header">Global Feed</h1>
-                <div className="posts-container">
-                {
-                    !isLoading && posts.length > 0 
-                    ? posts.map(post => {
-                        return (
-                           <PreviewPost {...post} /> 
-                        )
-                    })
-                    : null
-                }
+            <div className="outer-most">
+            <TopNav />
+            <div className="big-flex">
+                <div className="sidebar">
+                    <Sidebar />
                 </div>
+                <div className="PostFeed-container">
+                    <div className="posts-container">
+                    {
+                        !isLoading && posts.length > 0
+                        ? posts.map(post => {
+                            return (
+                               <PreviewPost {...post} key={ post._id }/>
+                            )
+                        })
+                        : null
+                    }
+                    </div>
+                </div>
+            </div>
             </div>
         )
     }
