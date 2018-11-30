@@ -7,24 +7,10 @@ class TopNav extends Component {
         super(props);
         this.state = {
             loggedIn: false,
-            username: ''
         }
 
-        this.authUser = this.authUser.bind(this);
     }
-    //makes req to backend that will authenticate a user
-    authUser() {
-        fetch('/auth/google')
-        .then(res => {
-            if(res.status === 200) {
-                //update state of loggedIn
-                this.setState({
-                    loggedIn: true,
-                    username: res.data.name
-                })
-            }
-        }).catch(err => console.log(err))
-    }
+
 
     render() {
         return (
@@ -39,8 +25,8 @@ class TopNav extends Component {
                     </span>
                 </div>
                 <div className="auth-nav">
-                    <button className="auth-btn" onClick={ this.authUser }>Sign In</button>
-                    <button className="auth-btn" onClick={ this.authUser }>Sign Up</button>
+                    <button className="auth-btn" onClick={ this.props.onClick }>Sign In</button>
+                    <button className="auth-btn" onClick={ this.props.onClick }>Sign Up</button>
                 </div>
             </div>
         )

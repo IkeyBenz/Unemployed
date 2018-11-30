@@ -18,18 +18,11 @@ class Post extends Component {
         this.fetchComments = this.fetchComments.bind(this);
     }
 
-    fetchPost() {
-        ...
-    }
-
-    fetchComments() {
-        ...
-    }
-
     render() {
         return (
             <div className="Post-container">
                 <div className="post-section">
+                    
 
                 </div>
                 <div className="comment-section">

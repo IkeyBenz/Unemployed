@@ -38,6 +38,6 @@ require('./controllers/users')(app);
 require('./controllers/posts')(app);
 require('./controllers/comments')(app);
 
-app.listen(5000, console.log("Listening on 5000"));
+app.listen(3000, console.log("Listening on 3000"));
 
 module.exports = app;

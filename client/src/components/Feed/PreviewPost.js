@@ -8,7 +8,7 @@ class PreviewPost extends Component {
 
     render() {
         return (
-            <div className="PreviewPost" key={ this.props._id}>
+            <div className="PreviewPost" key={ this.props._id } onClick={ () => this.props.method(this.props._id) }>
                 <div className="post-header">
                     <h2 className="post-title">{ this.props.title }</h2>
                     <small className="post-date">mm/dd/yyyy</small>

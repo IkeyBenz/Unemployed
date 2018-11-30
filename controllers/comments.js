@@ -26,6 +26,7 @@ module.exports = function (app) {
     // });
 
     ///POST: route creates new comment on specific post
+    // NOTE: this currently does not save comments to the user (no author(?))
     app.post('/posts/:postId/comments', (req, res) => {
         const comment = new Comment(req.body);
         comment.save().then(comment => {
@@ -47,7 +48,7 @@ module.exports = function (app) {
 
 
 
-// NOTE: // NOTE: Temporarily commented out until auth is figured out in react 
+// NOTE: // NOTE: Temporarily commented out until auth is figured out in react
     ///////If user is the author they can delete the comment
     // NOTE: This route hasn't been tested yet... waiting for Ikey on where to display delete button
     // app.delete('/posts/:postId/comments/:id', checkAuth, (req, res) => {
