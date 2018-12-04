@@ -41,26 +41,7 @@ module.exports = function (app) {
     })
 
 
+    
 
-
-
-
-
-
-
-// NOTE: // NOTE: Temporarily commented out until auth is figured out in react
-    ///////If user is the author they can delete the comment
-    // NOTE: This route hasn't been tested yet... waiting for Ikey on where to display delete button
-    // app.delete('/posts/:postId/comments/:id', checkAuth, (req, res) => {
-    //     Comment.findById(req.params.id).then(comment => {
-    //         if(comment.author === req.user ) {
-    //             Comment.findOneAndRemove(comment._id).then(comment => {
-    //                 res.redirect(`/posts/${req.params.postId}`);
-    //             }).catch(console.error)
-    //         } else {
-    //             res.send("You don't have permission to do that.");
-    //         }
-    //     }).catch(console.error)
-    // });
 
 }

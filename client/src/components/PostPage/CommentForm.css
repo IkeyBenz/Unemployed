@@ -1,0 +1,23 @@
+.CommentForm {
+    margin: auto;
+    
+}
+
+
+.comment-form-header {
+    text-align: left;
+    margin-left: 48px;
+}
+
+.comment-input {
+    width: 60%;
+    height: 88px;
+    font-size: 1em;
+    padding: 8px;
+    
+}
+
+.comment-area:focus {
+    outline: none;
+    border: none;
+}

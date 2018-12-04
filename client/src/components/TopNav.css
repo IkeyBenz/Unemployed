@@ -3,9 +3,12 @@
     margin: none;
     display: flex;
     flex-direction: row;
-    background-color: #D6D6D9;
+    background-color: #F5F5F5;
+    box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.75);
     justify-content: space-between;
     height: 64px;
+    position: sticky;
+    top: 0px;
 }
 /* This is a placeholder item... the logo will go here*/
 .un-branding {
@@ -40,7 +43,7 @@
 
 
 .auth-btn {
-    height: 50%;
+    height: auto;
     width: 88px;
     margin-right: 16px;
     font-size: .8em;
@@ -48,7 +51,7 @@
     text-decoration: none;
     padding: 8px;
     font-weight: 600;
-    background-color: #559099;
+    background-color: #FA4E4F;
     color: white;
     transition: all 350ms;
 }

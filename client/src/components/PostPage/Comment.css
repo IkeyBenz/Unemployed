@@ -1,0 +1,23 @@
+.comment-container {
+    text-align: left;
+    margin-left: 24px;
+    padding-bottom: 16px;
+    border: none;
+    border-bottom: solid black thin;
+}
+
+
+
+
+
+.comment-content {
+    font-size: 1em;
+    font-weight: 500;
+
+}
+
+.comment-author {
+    font-size: .6em;
+}
+
+

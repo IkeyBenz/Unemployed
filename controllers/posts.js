@@ -38,14 +38,25 @@ module.exports = function (app) {
     })
 
     // GET: Show individual post // QUESTION: Do we need this any longer?
-    // app.get('/posts/:id', (req, res) => {
-    //     Post.findById(req.params.id).populate('author').populate({
-    //         path: 'comments',
-    //         populate: { path: 'author' }
-    //     }).then(post => {
-    //         res.render('posts-show', { post: post });
-    //     }).catch(console.error);
-    // });
+    app.get('/posts/:id', (req, res) => {
+        Post.findById(req.params.id).populate('author').populate({
+            path: 'comments',
+            populate: { path: 'author' }
+        }).then(post => {
+            res.json(post);
+        }).catch(console.error);
+    });
 
-    // Temporary route.... need to fix user
+    //GET: route that returns array of comment object. creates less parsing on front end.
+    app.get('/posts/:id/comments', (req, res) => {
+        Post.findById(req.params.id).populate({
+            path: 'comments',
+            populate: {
+                path: 'author'
+            }}).then(post => {
+            return res.json(post.comments);
+
+        }).catch(console.error)
+    })
+
 }

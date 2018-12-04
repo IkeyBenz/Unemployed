@@ -7,6 +7,8 @@
 .PostFeed-container {
     width: 80%;
     margin: auto;
+    overflow-y: scroll;
+
 }
 
 .posts-container {
@@ -26,6 +28,7 @@
 .post-title {
     text-align: left;
     padding-left: 24px;
+    font-size: 2.5em;
 }
 
 .post-content {
