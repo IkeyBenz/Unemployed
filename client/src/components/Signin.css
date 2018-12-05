@@ -1,0 +1,44 @@
+.Signin-container {
+    margin: auto;
+    background-color: #F5F5F5;
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    padding: 24px;
+    width: 50%;
+    margin-top: 15%;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    
+}
+
+/* Hidden Labels  */
+.signin-form-labels {
+    margin-right: 90%;
+    margin-top: 16px;
+    font-weight: bold;
+}
+
+.auth-form-header {
+    font-size: 2em;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+
+.auth-input {
+    font-size: 1em;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+
+.auth-btns-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

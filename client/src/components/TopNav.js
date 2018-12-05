@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './TopNav.css';
+import { BrowserRouter, Link } from 'react-router-dom';
+
 
 
 class TopNav extends Component {
@@ -14,7 +16,8 @@ class TopNav extends Component {
 
     render() {
         return (
-            <div className="TopNav">
+            <BrowserRouter>
+                 <div className="TopNav">
                 <div className="branding-div">
                     <h2 className="un-branding">UN</h2>
                 </div>
@@ -25,10 +28,12 @@ class TopNav extends Component {
                     </span>
                 </div>
                 <div className="auth-nav">
-                    <button className="auth-btn" onClick={ this.props.onClick }>Sign In</button>
-                    <button className="auth-btn" onClick={ this.props.onClick }>Sign Up</button>
+                    <Link className="auth-btn" to="/signin" onClick={ this.forceUpdate }>Sign In</Link>
+                    <Link className="auth-btn" to="/signup" onClick={ this.forceUpdate }>Sign Up</Link>
                 </div>
             </div>
+            </BrowserRouter>
+           
         )
     }
 }
