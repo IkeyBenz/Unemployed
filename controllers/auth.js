@@ -1,19 +1,41 @@
-const passport = require('passport');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 module.exports = function (app) {
 
-    app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+    app.post('/signup', (req, res) => {
+        const newUser = new User(req.body);
+        newUser.save().then(user => {
+            const token = jwt.sign({ _id: user._id }, process.env.CLIENT_SECRET, { expiresIn: '60 days' });
+            res.cookie('UnToken', token, { maxAge: 900000, httpOnly: true });
+            res.status(200).end();
+        }).catch(error => {
+            res.status(400).send(error);
+        });
+    });
 
-    app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-        console.log(req.user)
-        console.log('in callback')
-        res.status(200).send('User Succesfully Authenticated')
+    app.post('/signin', (req, res) => {
+        User.findOne({ email: req.body.email }, 'email password').then(user => {
+            user.comparePassword(req.body.password, (error, isMatch) => {
+                if (isMatch) {
+                    const token = jwt.sign({ _id: user._id }, process.env.CLIENT_SECRET, { expiresIn: '60 days' });
+                    res.cookie('UnToken', token, { maxAge: 900000, httpOnly: true });
+                    res.status(200).end();
+                } else {
+                    res.status(400).send('Incorrect Password');
+                }
+                if (error) {
+                    res.status(400).send(error);
+                }
+            });
+        }).catch(error => {
+            res.status(400).send(error);
+        });
     });
 
     app.get('/signout', (req, res) => {
-        req.logout();
-        return res.status(200).send('Succesfully Signed Out User')
+        res.clearCookie('unToken');
+        res.status(200).end();
     });
 
 }
