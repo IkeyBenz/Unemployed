@@ -17,13 +17,6 @@
     margin: auto;
 }
 
-.post-card {
-    border: none;
-    border-bottom: solid black;
-    border-width: thin;
-    margin-bottom: 32px;
-
-}
 
 .post-title {
     text-align: left;

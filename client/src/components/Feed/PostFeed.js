@@ -55,7 +55,7 @@ class PostFeed extends Component {
             <TopNav onClick={ this.props.authUser } />
             <div className="big-flex">
                 <div className="sidebar">
-                    <Sidebar />
+                    <Sidebar {...this.props} />
                 </div>
                 <div className="PostFeed-container">
                     <div className="posts-container">

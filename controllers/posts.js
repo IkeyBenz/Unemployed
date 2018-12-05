@@ -14,22 +14,10 @@ module.exports = function (app) {
     })
 
 
-    // POST route: creates a new post.
-    // app.post('/posts', (req, res) => {
-    //     const post = new Post(req.body);
-    //     post.save().then(post => {
-    //         return User.findById(req.user._id);
-    //     }).then(user => {
-    //         user.posts.unshift(post);
-    //         user.save();
-    //         return res.status(200).send('Post successfully created!')
-    //     }).catch(console.error);
-    // });
 /// NOTE: Temp POST route until we figure out Auth with React////
     app.post('/posts', (req, res) => {
         const post = new Post(req.body);
         post.save().then(post => {
-            console.log(post);
             res.status(200).send('Post successfully Created!')
         }).catch(err => {
             console.log(err.message);

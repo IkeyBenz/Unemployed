@@ -38,12 +38,15 @@
     font-size: .8em;
     border: none;
     border-top: solid black thin;
+    border-bottom: solid black thin;
+    padding-bottom: 4px;
 
 }
 
 .post-date, .post-author {
     margin-top: 4px;
 }
+
 
 
 

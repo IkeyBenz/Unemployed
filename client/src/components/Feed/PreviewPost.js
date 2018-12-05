@@ -14,10 +14,9 @@ class PreviewPost extends Component {
                     <small className="post-date">mm/dd/yyyy</small>
                 </div>
                 <p className="post-content">{ this.props.content }</p>
-                <div className="post-footer">
+                <div className="posts-footer">
                     <div className="footer-info">
                         <h4 className="post-author">{ this.props.author.name }</h4>
-                        <h4 className="post-category">category</h4>
                     </div>
                     <div className="footer-voting">
                         <PostWidget />

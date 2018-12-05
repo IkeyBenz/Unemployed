@@ -32,7 +32,9 @@ module.exports = function (app) {
         comment.save().then(comment => {
             return Post.findById(req.params.postId);
         }).then(post => {
+            console.log(post)
             post.comments.unshift(comment);
+            post.save();
             return res.status(200).send('successfully Created Comment!');
         }).catch(err => {
             console.log(err.message);

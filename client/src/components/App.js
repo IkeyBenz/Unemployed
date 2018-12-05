@@ -47,7 +47,7 @@ class App extends Component {
                 <PostFeed authUser={ this.authUser } />
             )
         }} />
-        <Route path='/posts/new' exact component={ PostForm } />
+        <Route path='/post-form' exact component={ PostForm } />
         <Route path='/posts/:postId' exact component={ Post } />
       </div>
      </ BrowserRouter>

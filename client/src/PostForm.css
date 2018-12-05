@@ -1,8 +1,9 @@
 .PostForm-container {
     width: 70%;
-    border: solid black;
     margin: auto;
     margin-top: 88px;
+    background-color: #F5F5F5;
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -16,10 +17,18 @@
 
 .post-form-label {
     text-align: left;
+    margin-left: 88px;
+    font-weight: bold;
     margin-bottom: 8px;
     margin-top: 8px;
     font-size: .8em;
 
+}
+
+.form-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .form-div {
@@ -48,8 +57,14 @@
 .post-submit-btn {
     height: 32px;
     width: 20%;
+    background-color: #FA4E4F;
+    color: white;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 300ms;
+}
 
-    margin-top: 24px;
-
-
+.post-submit-btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }

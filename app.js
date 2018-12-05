@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const methodOverride = require('method-override');
 const passport = require('passport');
+const expressValidator = require('express-validator');
 require('./services/passport');
 const cookieSession = require('cookie-session');
 
@@ -27,8 +28,9 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 mongoose.Promise = global.Promise;
 
 // Setting up imported Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(expressValidator());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 

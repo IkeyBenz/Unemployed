@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 import '../PostForm.css';
 
 class PostForm extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            redirect: false
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -14,7 +18,9 @@ class PostForm extends Component {
         const postTitle = data.get('title');
         const postContent = data.get('content');
         const postType = data.get('postType');
-
+        this.setState({
+            redirect: true
+        })
         const newPost = {
             title: postTitle,
             content: postContent,
@@ -27,11 +33,6 @@ class PostForm extends Component {
             url: '/posts',
             data: newPost
         })
-        .then(res => {
-            console.log('Succesfully created new post ...')
-            console.log(res)
-
-        })
         .catch(err => {
             console.log(err.message)
         })
@@ -39,17 +40,22 @@ class PostForm extends Component {
 
 
     render() {
+        if (this.state.redirect === true) {
+            return ( <Redirect push to="/" />)
+        }
         return (
             <div className="PostForm-container">
-                <h2 className="create-post-header">Create New Post</h2>
+                <h2 className="create-post-header">Have Something To Say?</h2>
                 <div className="form-div">
                 <form className="new-post-form" onSubmit={ this.handleSubmit }>
-                    <label className="post-form-label">Post Title</label>
+                    <label className="post-form-label">Post Title:</label>
                     <input type="text" className="post-title-input" name="title" placeholder="Post title goes here ..."/>
-                    <label className="post-form-label">Post Content</label>
+                    <label className="post-form-label">Post Content:</label>
                     <textarea type="text" className="post-content-input" name="content" placeholder="Post content goes here ..."></textarea>
                     <input type="hidden" name="postType" value="user" />
-                    <button type="submit" className="post-submit-btn">Create Post</button>
+                    <div className="form-btn-container">
+                        <button type="submit" className="post-submit-btn">Create Post</button>
+                    </div>
                 </form>
                 </div>
             </div>

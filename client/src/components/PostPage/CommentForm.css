@@ -21,3 +21,20 @@
     outline: none;
     border: none;
 }
+
+.comment-btn {
+    margin-left: 356px;
+    background-color: #FA4E4F;
+    color: white;
+    font-size: 1em;
+    padding: 4px;
+    transition: all 350ms;
+}
+
+
+.comment-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    
+    
+}

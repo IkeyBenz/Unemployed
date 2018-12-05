@@ -17,6 +17,7 @@ class Post extends Component {
         }
 
         this.fetchPost = this.fetchPost.bind(this);
+        this.toggleCommentForm = this.toggleCommentForm.bind(this);
     }
     componentDidMount() {
         return this.fetchPost();
@@ -38,6 +39,9 @@ class Post extends Component {
         .catch(err => console.log(err.message))
     }
 
+    toggleCommentForm() {
+
+    }
    
     render() {
         return (
@@ -54,7 +58,7 @@ class Post extends Component {
                 </div>
                 <div className="comment-section">
                     <div className="comment-form-section">
-                        <CommentForm />
+                        <CommentForm {...this.props} />
                     </div>
                     <div className="comment-list-container">
                         <CommentList  { ...this.props } />

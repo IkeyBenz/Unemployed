@@ -1,7 +1,4 @@
 .PostWidget {
-    /* border: solid black;
-    border-width: thin;
-    background-color: #353E41; */
     margin-bottom: 0px;
     margin-top: 16px;
 }
@@ -11,7 +8,7 @@
     outline: none;
     border: none;
     font-size: 1em;
-    color: #559099;
+    color: #FA4E4F;
     transition: all 350ms;
 }
 

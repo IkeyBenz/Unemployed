@@ -1,6 +1,5 @@
 
 .PreviewPost {
-    border-width: thin;
     margin-bottom: 24px;
     padding: 8px;
     background-color: #F5F5F5;
@@ -34,11 +33,13 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.post-footer {
+.posts-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 164px;
+    margin-top: 176px;
+    border-top: solid black thin;
+
 
 }
 
@@ -48,9 +49,10 @@
     justify-content: flex-start;
 }
 
-.post-author, .post-category {
+.post-author {
     margin-bottom: 0px;
     padding-bottom: 0px;
+    padding-top: 8px;
     margin-left: 16px;
     font-size: .75em;
 }
