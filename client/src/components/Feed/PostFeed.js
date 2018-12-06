@@ -24,13 +24,17 @@ class PostFeed extends Component {
         this.fetchPosts();
     }
     fetchPosts() {
+        console.log('Should be fetching posts ya know');
         fetch('/posts')
         .then(res => res.json())
-        .then(posts => this.setState({
-            posts,
-            isLoading: false
-        }))
-        .catch(err => console.log(err.message))
+        .then(posts => {
+            console.log(posts);
+            this.setState({
+                posts,
+                isLoading: false
+            });
+        })
+        .catch(err => console.log(err))
     }
 
     goToPost(key) {
