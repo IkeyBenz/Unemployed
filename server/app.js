@@ -1,26 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-require('dotenv').config();
 const methodOverride = require('method-override');
-const passport = require('passport');
 const expressValidator = require('express-validator');
-require('./services/passport');
-const cookieSession = require('cookie-session');
 
 const mongoose = require('mongoose');
 const app = express();
 
-
-// Session Handling
-app.use(cookieSession({
-    name: 'UN-Session',
-    maxAge: 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY]
-}));
-
-// Passport setup
-app.use(passport.initialize());
-app.use(passport.session());
+require('dotenv').config();
 
 // Database Connections
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/unemployed', { useNewUrlParser: true });
