@@ -47,9 +47,9 @@ class Signin extends Component{
                 <div className="Signin-container">
                     <h2 className="auth-form-header">Get Signed In</h2>
                     <form onSubmit={ this.signinUser } className="signin-form">
-                        <label for="email" className="signin-form-labels">Email:</label>
+                        <label htmlFor="email" className="signin-form-labels">Email:</label>
                         <input className="auth-input" type="text" name="email" placeholder="Enter Your Email" />
-                        <label for="password" className="signin-form-labels" >Password:</label>
+                        <label htmlFor="password" className="signin-form-labels" >Password:</label>
                         <input className="auth-input" name="password" type="password" placeholder="Enter Your Password" />
                         <div className="auth-btns-container">
                             <button className="auth-btn">Sign In</button>
