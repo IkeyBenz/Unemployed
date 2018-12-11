@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Redirect } from 'react-router';
 import './Signin.css';
+import axios from 'axios';
 
 
 class Signin extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            formSubmitted: false
+            formSubmitted: false,
+            user: false
         }
-
         this.signinUser = this.signinUser.bind(this);
+
     }
     
     signinUser(e) {
+        e.preventDefault();
         const form = e.target;
         const data = new FormData(form);
         const email = data.get('email');
@@ -23,10 +25,16 @@ class Signin extends Component{
             email: email,
             password: password
         }
-        this.setState({
-            formSubmitted: true
-        })
 
+        this.setState({
+               formSubmitted: true,
+               user: true
+        },function() {
+            this.props.dataToParent(this.state.user)
+            console.log('User on signin component ===> ' + this.state.user);
+
+        }
+        )
         
 
         axios({
@@ -35,18 +43,14 @@ class Signin extends Component{
             data: user
         })
         .then((res) => {
-
-            console.log(res)
-            ////Get the JWT token and store it in local storage
-            // const data = res.payload.data;
-            // if ( res.payload.status === 200 ) {
-            //     sessionStorage.setItem('UnToken', data.token);
-            // } else {
-            //     console.log('No token')
-            // }
+            
+           // window.location.reload();
         })
         .catch(err => console.log(err));
     }
+    
+   
+     
 
     render() {
         if ( this.state.formSubmitted === true ) {

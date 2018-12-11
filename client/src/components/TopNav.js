@@ -4,8 +4,26 @@ import { BrowserRouter, Link } from 'react-router-dom';
 
 
 class TopNav extends Component {
+    constructor(props) {
+        super(props);
+        this.signoutUser = this.signoutUser.bind(this);
+    }
+    componentDidMount() {
+        console.log(this.props.user)
+    }
+
+    signoutUser() {
+        fetch('/signout')
+        .then(res => {
+            window.location.reload();
+            console.log('Something is going on')
+        })
+        .catch(err => console.log(err))
+    }
+   
 
     render() {
+        const user = this.props.user;
         return (
             <BrowserRouter>
                  <div className="TopNav">
@@ -18,10 +36,18 @@ class TopNav extends Component {
                     <button className="search-btn" type="submit"><i className="far fa-check-circle"></i></button>
                     </span>
                 </div>
-                <div className="auth-nav">
-                    <Link className="auth-btn" to="/signin" onClick={ this.forceUpdate }>Sign In</Link>
-                    <Link className="auth-btn" to="/signup" onClick={ this.forceUpdate }>Sign Up</Link>
-                </div>
+                
+                { user ? (
+                    <div className="auth-nav">
+                        <button className="auth-btn" onClick={ this.signoutUser }>Sign Out</button>
+                    </div>
+                ) : (
+                    <div className="auth-nav">
+                        <Link className="auth-btn" to="/signin" onClick={ this.forceUpdate }>Sign In</Link>
+                        <Link className="auth-btn" to="/signup" onClick={ this.forceUpdate }>Sign Up</Link>
+                    </div>
+                )}
+                    
             </div>
             </BrowserRouter>
            

@@ -23,8 +23,9 @@ class PostFeed extends Component {
     componentDidMount() {
         console.log('mounted')
         this.fetchPosts();
-        localStorage.getItem('UnToken')
+        
     }
+
     fetchPosts() {
         fetch('/posts')
         .then(res => res.json())
@@ -49,13 +50,15 @@ class PostFeed extends Component {
 
 
     render() {
+        const user = this.props.user;
+        console.log(user)
         if (this.state.redirect) {
             return <Redirect push to={ this.state.url} />
         }
         const { isLoading, posts } = this.state;
         return (
             <div className="outer-most">
-            <TopNav onClick={ this.props.authUser } />
+            <TopNav user={ user } />
             <div className="big-flex">
                 <div className="sidebar">
                     <Sidebar {...this.props} />

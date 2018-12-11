@@ -9,12 +9,14 @@ class Signup extends Component{
         super(props);
         this.state = {
             formSubmitted: false,
+            user: false
         }
 
         this.signupUser = this.signupUser.bind(this);
     }
     
     signupUser(e) {
+        e.preventDefault();
         const form = e.target;
         const data = new FormData(form);
         const email = data.get('email');
@@ -30,19 +32,24 @@ class Signup extends Component{
 
 
         if ( confirmPassword === password ) {
+           
             this.setState({
-                formSubmitted: true
-            },
-            function() {
-                console.log(this.state)
-            })
+                formSubmitted: true,
+                user: true
+         },function() {
+             this.props.dataToParent(this.state.user)
+             console.log('User on signin component ===> ' + this.state.user);
+ 
+         })
     
             axios({
                 method: 'post',
                 url: '/signup',
                 data: newUser
             })
-            .then(res => console.log('user is logged in'))
+            .then(res => {
+                console.log('user is logged in')
+            })
             .catch(err => console.log(err));
         } else {
             console.log('Passwords do not match up.')
