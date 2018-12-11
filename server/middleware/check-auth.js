@@ -6,7 +6,8 @@ module.exports = function (req, res, next) {
         const uid = jwt.decode(req.cookie('unToken'), process.env.CLIENT_SECRET)._id;
         User.findById(uid).then(user => {
             req.user = user;
-            res.locals.authenticatedUser = user;
+            console.log(user)
+            app.locals.user = user;
             return next();
         });
     } else {
