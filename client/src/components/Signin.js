@@ -34,7 +34,17 @@ class Signin extends Component{
             url: '/signin',
             data: user
         })
-        .then(res => console.log('user is logged in'))
+        .then((res) => {
+
+            console.log(res)
+            ////Get the JWT token and store it in local storage
+            // const data = res.payload.data;
+            // if ( res.payload.status === 200 ) {
+            //     sessionStorage.setItem('UnToken', data.token);
+            // } else {
+            //     console.log('No token')
+            // }
+        })
         .catch(err => console.log(err));
     }
 

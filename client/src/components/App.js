@@ -42,8 +42,10 @@ class App extends Component {
 
   render() {
     return (
+   
     <BrowserRouter>
       <div className="App">
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
         <Route path='/'exact render={ props => {
             return (
                 <PostFeed authUser={ this.authUser } />

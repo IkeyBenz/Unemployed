@@ -12,7 +12,8 @@ class PostFeed extends Component {
             posts: [],
             isLoading: true,
             redirect: false,
-            url: ''
+            url: '',
+            loggedIn: false
         }
 
         this.fetchPosts = this.fetchPosts.bind(this);
@@ -22,13 +23,12 @@ class PostFeed extends Component {
     componentDidMount() {
         console.log('mounted')
         this.fetchPosts();
+        localStorage.getItem('UnToken')
     }
     fetchPosts() {
-        console.log('Should be fetching posts ya know');
         fetch('/posts')
         .then(res => res.json())
         .then(posts => {
-            console.log(posts);
             this.setState({
                 posts,
                 isLoading: false
@@ -43,7 +43,6 @@ class PostFeed extends Component {
             redirect: true,
             url: `/posts/${key}`
         })
-        console.log('Something is going on ')
     }
 
 

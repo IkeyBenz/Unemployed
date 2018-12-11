@@ -3,16 +3,7 @@ import './TopNav.css';
 import { BrowserRouter, Link } from 'react-router-dom';
 
 
-
 class TopNav extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loggedIn: false,
-        }
-
-    }
-
 
     render() {
         return (
