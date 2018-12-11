@@ -26,15 +26,7 @@ class Signin extends Component{
             password: password
         }
 
-        this.setState({
-               formSubmitted: true,
-               user: true
-        },function() {
-            this.props.dataToParent(this.state.user)
-            console.log('User on signin component ===> ' + this.state.user);
-
-        }
-        )
+        
         
 
         axios({
@@ -43,8 +35,18 @@ class Signin extends Component{
             data: user
         })
         .then((res) => {
+            if(res.status === 200) {
+                this.setState({
+                    formSubmitted: true,
+                    user: true
+             },function() {
+                 this.props.dataToParent(this.state.user)
+                 console.log('User on signin component ===> ' + this.state.user);
+     
+             }
+             )
+            }
             
-           // window.location.reload();
         })
         .catch(err => console.log(err));
     }

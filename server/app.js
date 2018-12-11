@@ -17,6 +17,7 @@ mongoose.Promise = global.Promise;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
+app.use(require('cookie-parser')());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 

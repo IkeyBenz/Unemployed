@@ -20,7 +20,7 @@ module.exports = function (app) {
                 if (isMatch) {
                     const token = jwt.sign({ _id: user._id }, process.env.CLIENT_SECRET, { expiresIn: '60 days' });
                     res.cookie(process.env.COOKIE, token, { maxAge: 900000, httpOnly: true });
-                    res.status(200).end();
+                    res.status(200).json({...user, password: null}).end();
                 } else {
                     res.status(400).send('Incorrect Password');
                 }
@@ -36,6 +36,18 @@ module.exports = function (app) {
     app.get('/signout', (req, res) => {
         res.clearCookie(process.env.COOKIE);
         res.status(200).end();
+    });
+
+    app.get('/authenticatedUser', (req, res) => {
+        if (req.cookies && req.cookies.UnToken) {
+            const uid = jwt.decode(req.cookies.UnToken, process.env.CLIENT_SECRET)._id;
+            User.findById(uid).then(user => {
+                res.json(user);
+            });
+        } else {
+            console.log("Me thinks there's no UnToken.");
+            res.json(null);
+        }
     });
 
 }
