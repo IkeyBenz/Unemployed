@@ -7,6 +7,7 @@ import PostForm from './PostForm';
 import Signup from './Signup';
 import Post from './PostPage/Post';
 import Signin from './Signin';
+import axios from 'axios';
 
 //import axios from 'axios';
 
@@ -14,20 +15,27 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: false
+            user: false,
+            ...this.props
         }
         // this.signinUser = this.signinUser.bind(this);
-        this.userFromChild = this.userFromChild.bind(this);
+        this.getUser = this.getUser.bind(this);
     }
 
-    userFromChild(childData) {
-        this.setState({
-            user: childData
-        }, function() {
-            console.log('This is the user')
-            console.log(this.state.user)
-        })
+    componentDidMount() {
+        this.getUser();
     }
+    getUser() {
+        axios('/authenticatedUser').then(res => {
+            if (res.data) {
+                this.setState({
+                    user: true
+                });
+            }
+        });
+    }
+
+
     
 
   render() {
@@ -43,16 +51,21 @@ class App extends Component {
         }} />
         <Route path="/signin" exact render={ props => {
             return (
-                <Signin dataToParent={ this.userFromChild } />
+                <Signin />
             )
         } }/>
          <Route path="/signup" exact render={ props => {
             return (
-                <Signup dataToParent={ this.userFromChild } />
+                <Signup />
             )
         } }/>
+
         <Route path='/post-form' exact component={ PostForm } />
-        <Route path='/posts/:postId' exact component={ Post } />
+        <Route path='/posts/:postId' exact render={ () => {
+            return(
+                <Post { ...this.state } />
+            )
+        }} />
       </div>
      </ BrowserRouter>
     );

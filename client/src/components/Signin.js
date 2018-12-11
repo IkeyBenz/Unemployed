@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import './Signin.css';
 import axios from 'axios';
 
@@ -40,11 +40,13 @@ class Signin extends Component{
                     formSubmitted: true,
                     user: true
              },function() {
-                 this.props.dataToParent(this.state.user)
                  console.log('User on signin component ===> ' + this.state.user);
+                 this.forceUpdate();
      
              }
              )
+            } else {
+                alert('Wrong username or password')
             }
             
         })
@@ -56,7 +58,7 @@ class Signin extends Component{
 
     render() {
         if ( this.state.formSubmitted === true ) {
-            return <Redirect push to="/" />
+            window.location.replace('/');
         }
         return (
             <div className="transparent-overlay-background">

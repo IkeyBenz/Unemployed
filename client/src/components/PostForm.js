@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 import '../PostForm.css';
 
 class PostForm extends Component {
@@ -12,7 +11,18 @@ class PostForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        axios('/authenticatedUser').then(res => {
+            this.setState({
+                userId: res.data._id,
+                userName: res.data.name
+            }, function () {
+                console.log(this.state);
+            });
+        });
+    }
     handleSubmit(e) {
+        e.preventDefault();
         const form = e.target;
         const data = new FormData(form);
         const postTitle = data.get('title');
@@ -24,7 +34,8 @@ class PostForm extends Component {
         const newPost = {
             title: postTitle,
             content: postContent,
-            postType: postType
+            postType: postType,
+            author: this.state.userId
         }
         console.log(newPost);
 
@@ -32,6 +43,9 @@ class PostForm extends Component {
             method: 'post',
             url: '/posts',
             data: newPost
+        })
+        .then(res => {
+            // window.location.reload();
         })
         .catch(err => {
             console.log(err.message)
@@ -41,7 +55,7 @@ class PostForm extends Component {
 
     render() {
         if (this.state.redirect === true) {
-            return ( <Redirect push to="/" />)
+            window.location.replace('/');
         }
         return (
             <div className="PostForm-container">

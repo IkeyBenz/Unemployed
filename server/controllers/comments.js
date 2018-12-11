@@ -25,22 +25,23 @@ module.exports = function (app) {
     //     }).catch(console.error)
     // });
 
+
     ///POST: route creates new comment on specific post
     // NOTE: this currently does not save comments to the user (no author(?))
     app.post('/posts/:postId/comments', (req, res) => {
+
         const comment = new Comment(req.body);
+
         comment.save().then(comment => {
-            return Post.findById(req.params.postId);
-        }).then(post => {
-            console.log(post)
-            post.comments.unshift(comment);
-            post.save();
+            console.log(comment);
+            return Post.findByIdAndUpdate(req.params.postId, { $push: { comments: comment } });
+        }).then(() => {
             return res.status(200).send('successfully Created Comment!');
         }).catch(err => {
-            console.log(err.message);
+           // console.log("Backend Error: POST /posts/:postId/comments: " + err.message);
             res.status(400).send(err);
-        })
-    })
+        });
+    });
 
 
     

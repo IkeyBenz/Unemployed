@@ -2,46 +2,57 @@ import React, { Component } from 'react';
 import './Post.css';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
+import axios from 'axios';
 
 class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
+            postId: '',
             title: '',
             content: '',
             author: '',
+            comments: [],
             postType: '',
             date: '',
             isLoading: true
         }
 
         this.fetchPost = this.fetchPost.bind(this);
-        this.toggleCommentForm = this.toggleCommentForm.bind(this);
+        this.getUser = this.getUser.bind(this);
     }
     componentDidMount() {
-        return this.fetchPost();
+        this.fetchPost();
+        this.getUser();
+    }
+    getUser() {
+        axios('/authenticatedUser').then(res => {
+            this.setState({
+                userId: res.data._id,
+                userName: res.data.name
+            });
+        });
     }
 
     fetchPost() {
-        const { match: { params } } = this.props;
-        fetch(`/posts/${ params.postId }`)
+        const link = window.location.href;
+        const id = link.slice(link.indexOf('/posts/') + 7);
+        fetch(`/posts/${ id }`)
         .then(res => res.json())
         .then(post => this.setState({
-            id: post._id,
+            postId: post._id,
             title: post.title,
             content: post.content,
             author: post.author.name,
-            date: post.author.createdAt,
+            date: post.createdAt,
+            comments: post.comments,
             postType: post.postType,
             isLoading: false
         }))
         .catch(err => console.log(err.message))
     }
 
-    toggleCommentForm() {
-
-    }
+    
    
     render() {
         return (
@@ -58,10 +69,10 @@ class Post extends Component {
                 </div>
                 <div className="comment-section">
                     <div className="comment-form-section">
-                        <CommentForm {...this.props} />
+                        <CommentForm {...this.state} />
                     </div>
                     <div className="comment-list-container">
-                        <CommentList  { ...this.props } />
+                        <CommentList  { ...this.state } />
                     </div>
                 </div>
             </div>

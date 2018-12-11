@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 //comments go on post... Post contains arr of comments
 const CommentSchema = new Schema({
     author: { type: Schema.Types.ObjectId, ref: 'User'},
-    content: { type: String, required: true}
+    content: { type: String, required: true},
+    postId: { type: Schema.Types.ObjectId, ref: 'Post' }
 })
 
 

@@ -13,19 +13,21 @@ class PostFeed extends Component {
             isLoading: true,
             redirect: false,
             url: '',
-            loggedIn: false
         }
 
         this.fetchPosts = this.fetchPosts.bind(this);
         this.goToPost = this.goToPost.bind(this);
+
     }
 
     componentDidMount() {
         console.log('mounted')
         this.fetchPosts();
+
         
     }
 
+    
     fetchPosts() {
         fetch('/posts')
         .then(res => res.json())
@@ -50,19 +52,23 @@ class PostFeed extends Component {
 
 
     render() {
-        const user = this.props.user;
-        console.log(user)
+        console.log(this.props.user)
         if (this.state.redirect) {
             return <Redirect push to={ this.state.url} />
         }
         const { isLoading, posts } = this.state;
         return (
             <div className="outer-most">
-            <TopNav user={ user } />
+            <TopNav { ...this.props } />
             <div className="big-flex">
-                <div className="sidebar">
-                    <Sidebar {...this.props} />
-                </div>
+            {
+                this.props.user ? (
+                    <div className="sidebar">
+                        <Sidebar {...this.props} />
+                    </div>
+                ) : null
+            }
+                
                 <div className="PostFeed-container">
                     <div className="posts-container">
                     {

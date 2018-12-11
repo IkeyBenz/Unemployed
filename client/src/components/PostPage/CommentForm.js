@@ -9,24 +9,31 @@ class CommentForm extends Component {
     }
 
     postComment(e) {
-        const { match: { params } } = this.props;
+        e.preventDefault();
         const form = e.target;
         const data = new FormData(form);
         console.log(data);
         const commentContent = data.get('content');
-        console.log(commentContent)
         const newComment = {
-            content: commentContent
+            content: commentContent,
+            author: this.props.userId,
+            postId: this.props.postId,
+
+
+
         }
         console.log(newComment);
           
         axios({
             method: 'post',
-            url: `/posts/${params.postId}/comments`,
+            url: `/posts/${ this.props.postId }/comments`,
             data: newComment
         })  
         .then(res => {
             console.log(res)
+            this.props.comments.unshift(res)
+
+            window.location.replace(`/posts/${this.props.postId}`);
             console.log('something worked')
         })
         .catch(err => console.log(err))
