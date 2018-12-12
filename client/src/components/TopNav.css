@@ -12,8 +12,9 @@
 }
 /* This is a placeholder item... the logo will go here*/
 .un-branding {
-    margin-top: 8px;
-    margin-left: 8px;
+    margin: 8px;
+    width: 48px;
+    height: auto;
 }
 
 .nav-search {
@@ -28,7 +29,7 @@
     border: none;
     outline: none;
     font-size: 1.2em;
-    color: #559099;
+    color: #D00000;
     font-weight: 800;
     transition: all 350ms;
 }
@@ -51,13 +52,12 @@
     text-decoration: none;
     padding: 8px;
     font-weight: 600;
-    background-color: #FA4E4F;
+    background-color: #D00000;
     color: white;
     transition: all 350ms;
 }
 
 .auth-btn:hover {
-    transform: scale(1.05);
-    opacity: 0.7;
+    opacity: 0.8;
     cursor: pointer;
 }

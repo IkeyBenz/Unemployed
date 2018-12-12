@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './TopNav.css';
 import { BrowserRouter, Link } from 'react-router-dom';
+import logo from '../images/Unemployed_Logo.png';
 
 
 class TopNav extends Component {
@@ -28,7 +29,7 @@ class TopNav extends Component {
             <BrowserRouter>
                  <div className="TopNav">
                 <div className="branding-div">
-                    <h2 className="un-branding">UN</h2>
+                    <Link to="/" onClick={ this.forceUpdate }><img className="un-branding" alt="UN" src={ logo } /></Link>
                 </div>
                 <div className="search-div">
                     <span>

@@ -42,10 +42,11 @@ class CommentForm extends Component {
     render() {
         return (
             <div className="CommentForm">
-                <h3 className="comment-form-header">Add Comment:</h3>
                 <form onSubmit={ this.postComment }>
-                    <textarea className="comment-input" name="content" placeholder="Jump in the conversation, add a comment!"></textarea><br />
-                    <button className="comment-btn" type="submit"><i className="fas fa-plus"></i>Comment</button>
+                    <input className="comment-input" type="text" name="content" placeholder="Jump in the conversation, add a comment!" />
+                    <div className="btn-left">
+                        <button className="comment-btn" type="submit">Add</button>
+                    </div>
                 </form>
             </div>
         )
