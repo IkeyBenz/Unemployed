@@ -3,6 +3,7 @@ import './Post.css';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 import axios from 'axios';
+import TopNav from '../TopNav';
 
 class Post extends Component {
     constructor(props) {
@@ -27,10 +28,12 @@ class Post extends Component {
     }
     getUser() {
         axios('/authenticatedUser').then(res => {
-            this.setState({
-                userId: res.data._id,
-                userName: res.data.name
-            });
+            if(res.data) {
+                this.setState({
+                    userId: res.data._id,
+                    userName: res.data.name
+                });
+            }   
         });
     }
 
@@ -57,6 +60,7 @@ class Post extends Component {
     render() {
         return (
             <div className="transparent-background">
+            <TopNav { ...this.props} />
               <div className="Post-container">
                 <div className="post-section">
                     <h2 className="post-title">{ this.state.title }</h2>
@@ -68,15 +72,21 @@ class Post extends Component {
                     </div>
                 </div>
                 <div className="comment-section">
-                    <div className="comment-form-section">
-                        <CommentForm {...this.state} />
-                    </div>
+                {
+                    this.props.user ? (
+                        <div className="comment-form-section">
+                            <CommentForm {...this.state} />
+                        </div>
+                    ) : null
+                }
+                    
                     <div className="comment-list-container">
                         <CommentList  { ...this.state } />
                     </div>
                 </div>
             </div>
             </div>
+            
           
         )
     }
