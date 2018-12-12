@@ -23,10 +23,7 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 // Controllers
-require('./controllers/auth')(app);
-require('./controllers/users')(app);
-require('./controllers/posts')(app);
-require('./controllers/comments')(app);
+app.use('/api', require('./controllers/api'));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
