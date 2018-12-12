@@ -27,7 +27,7 @@ class Post extends Component {
         this.getUser();
     }
     getUser() {
-        axios('/authenticatedUser').then(res => {
+        axios('/api/auth/currentUser').then(res => {
             if(res.data) {
                 this.setState({
                     userId: res.data._id,
@@ -40,7 +40,7 @@ class Post extends Component {
     fetchPost() {
         const link = window.location.href;
         const id = link.slice(link.indexOf('/posts/') + 7);
-        fetch(`/posts/${ id }`)
+        fetch(`/api/posts/${ id }`)
         .then(res => res.json())
         .then(post => this.setState({
             postId: post._id,

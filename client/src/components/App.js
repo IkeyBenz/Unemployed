@@ -26,7 +26,7 @@ class App extends Component {
         this.getUser();
     }
     getUser() {
-        axios('/authenticatedUser').then(res => {
+        axios('/api/auth/currentUser').then(res => {
             if (res.data) {
                 this.setState({
                     user: true

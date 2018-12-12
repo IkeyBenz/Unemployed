@@ -12,7 +12,7 @@ class PostForm extends Component {
     }
 
     componentDidMount() {
-        axios('/authenticatedUser').then(res => {
+        axios('/api/auth/currentUser').then(res => {
             this.setState({
                 userId: res.data._id,
                 userName: res.data.name
@@ -41,7 +41,7 @@ class PostForm extends Component {
 
         axios({
             method: 'post',
-            url: '/posts',
+            url: '/api/posts',
             data: newPost
         })
         .then(res => {

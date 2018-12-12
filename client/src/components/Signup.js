@@ -44,7 +44,7 @@ class Signup extends Component{
     
             axios({
                 method: 'post',
-                url: '/signup',
+                url: '/api/auth/signup',
                 data: newUser
             })
             .then(res => {

@@ -21,7 +21,7 @@ class Sidebar extends Component {
 
 
     fetchUser() {
-        axios('/authenticatedUser').then(res => {
+        axios('/api/auth/currentUser').then(res => {
             this.setState({
                 name: res.data.name
             },

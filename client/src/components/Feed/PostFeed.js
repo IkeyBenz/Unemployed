@@ -29,7 +29,7 @@ class PostFeed extends Component {
 
     
     fetchPosts() {
-        fetch('/posts')
+        fetch('/api/posts')
         .then(res => res.json())
         .then(posts => {
             this.setState({
@@ -44,7 +44,7 @@ class PostFeed extends Component {
         console.log('Started')
         this.setState({
             redirect: true,
-            url: `/posts/${key}`
+            url: `/api/posts/${key}`
         })
     }
 

@@ -13,7 +13,7 @@ class TopNav extends Component {
     }
 
     signoutUser() {
-        fetch('/signout')
+        fetch('/api/auth/signout')
         .then(res => {
             window.location.reload();
             console.log('Something is going on')

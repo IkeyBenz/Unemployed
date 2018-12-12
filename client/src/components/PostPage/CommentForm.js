@@ -26,7 +26,7 @@ class CommentForm extends Component {
           
         axios({
             method: 'post',
-            url: `/posts/${ this.props.postId }/comments`,
+            url: `/api/posts/${ this.props.postId }/comments`,
             data: newComment
         })  
         .then(res => {
