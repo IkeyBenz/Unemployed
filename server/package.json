@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha",
-    "start": "node app.js"
+    "start": "node app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
