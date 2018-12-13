@@ -8,6 +8,8 @@ class CommentForm extends Component {
         this.postComment = this.postComment.bind(this);
     }
 
+
+    ///Takes form data and makes POST request to server (creates new comment)
     postComment(e) {
         e.preventDefault();
         const form = e.target;

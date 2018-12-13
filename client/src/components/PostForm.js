@@ -7,10 +7,11 @@ class PostForm extends Component {
         super(props);
         this.state = {
             redirect: false
+            
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    //Making a request to get the current user and setting the state of the username and password
     componentDidMount() {
         axios('/api/auth/currentUser').then(res => {
             this.setState({
@@ -21,6 +22,8 @@ class PostForm extends Component {
             });
         });
     }
+
+    ///Takes the data submitted with the form and makes a post request to the server
     handleSubmit(e) {
         e.preventDefault();
         const form = e.target;

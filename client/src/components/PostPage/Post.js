@@ -22,10 +22,15 @@ class Post extends Component {
         this.fetchPost = this.fetchPost.bind(this);
         this.getUser = this.getUser.bind(this);
     }
+
+
+    ////Calls methods to Get User and fetch relevant post info
     componentDidMount() {
         this.fetchPost();
         this.getUser();
     }
+
+    //makes GET request to server to retrieve current user
     getUser() {
         axios('/api/auth/currentUser').then(res => {
             if(res.data) {
@@ -37,6 +42,7 @@ class Post extends Component {
         });
     }
 
+    //makes a GET request to server to retrieve relevant post info
     fetchPost() {
         const link = window.location.href;
         const id = link.slice(link.indexOf('/posts/') + 7);

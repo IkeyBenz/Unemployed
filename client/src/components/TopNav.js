@@ -9,10 +9,8 @@ class TopNav extends Component {
         super(props);
         this.signoutUser = this.signoutUser.bind(this);
     }
-    componentDidMount() {
-        console.log(this.props.user)
-    }
-
+    
+    ////Makes GET request to server and clears cookies/logs user out
     signoutUser() {
         fetch('/api/auth/signout')
         .then(res => {

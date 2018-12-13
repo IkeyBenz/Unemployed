@@ -9,17 +9,17 @@ class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: 'John Doe'
+            name: ''
         }
         
         this.fetchUser = this.fetchUser.bind(this);
     }
-
+    //Calls the fetchUser method when the component mounts
     componentDidMount() {
         this.fetchUser();
     }
 
-
+    //Fetches the current user and sets the state of usersname so we can set the text on the sidebar
     fetchUser() {
         axios('/api/auth/currentUser').then(res => {
             this.setState({

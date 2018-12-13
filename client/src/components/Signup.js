@@ -14,7 +14,7 @@ class Signup extends Component{
 
         this.signupUser = this.signupUser.bind(this);
     }
-    
+    ///Makes POST request to server and signs user up
     signupUser(e) {
         e.preventDefault();
         const form = e.target;
