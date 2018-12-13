@@ -1,0 +1,23 @@
+.CommentWidget {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.comment-widget-btn {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: .75em;
+    margin-right: 0px;
+    color: #D00000;
+    transition: all 350ms;
+
+}
+
+.comment-widget-btn {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+

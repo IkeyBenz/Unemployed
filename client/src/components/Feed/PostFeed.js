@@ -44,7 +44,7 @@ class PostFeed extends Component {
         console.log('Started')
         this.setState({
             redirect: true,
-            url: `/api/posts/${key}`
+            url: `/posts/${key}`
         })
     }
 

@@ -11,7 +11,6 @@ class CommentList extends Component {
     render() {
         return (
             <div className="Comment-List">
-                <h3 className="comments-header">Comments: </h3>
                 <div className="comments-container">
                 {
                         this.props.comments.length > 0

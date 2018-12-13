@@ -14,7 +14,7 @@ class Signin extends Component{
         this.signinUser = this.signinUser.bind(this);
 
     }
-    
+    //Makes post request from form data to sign in user
     signinUser(e) {
         e.preventDefault();
         const form = e.target;
@@ -36,6 +36,7 @@ class Signin extends Component{
         })
         .then((res) => {
             if(res.status === 200) {
+                //Sets state with user and form submitted
                 this.setState({
                     formSubmitted: true,
                     user: true

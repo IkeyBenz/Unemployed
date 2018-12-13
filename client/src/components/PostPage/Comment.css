@@ -1,4 +1,4 @@
-.comment-container {
+/* .comment-container {
     text-align: left;
     margin-left: 24px;
     padding-bottom: 16px;
@@ -18,6 +18,36 @@
 
 .comment-author {
     font-size: .6em;
+} */
+
+.comment-container {
+    display: flex;
+    flex-direction: column;
+}
+.comment-row {
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 32px;
+}
+.comment-row * {
+    padding: 4px;
+}
+.thumbs-widget {
+    height: 32px;
 }
 
+.small-text {
+    font-size: 0.6em;
+}
+.med-text {
+    font-size: 0.9em;
+}
+.big-text {
+    line-height: 14px;
+    margin: 0px;
+    vertical-align: middle;
+    padding: 0px;
+}
 
