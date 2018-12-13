@@ -5,7 +5,7 @@ const PostSchema = new Schema({
     createdAt: { type: String },
     title: { type: String, required: true },
     content: { type: String, required: true },
-    author: { type: Schema.Types.ObjectId, ref: 'User', required: false },
+    author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     postType: { type: String, required: false }
 });
