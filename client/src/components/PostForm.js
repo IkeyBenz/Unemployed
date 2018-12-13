@@ -7,52 +7,60 @@ class PostForm extends Component {
         super(props);
         this.state = {
             redirect: false
-            
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     //Making a request to get the current user and setting the state of the username and password
     componentDidMount() {
-        axios('/api/auth/currentUser').then(res => {
-            this.setState({
-                userId: res.data._id,
-                userName: res.data.name
-            }, function () {
-                console.log(this.state);
+
+        if(this.props.user) {
+            axios('/api/auth/currentUser').then(res => {
+                this.setState({
+                    userId: res.data._id,
+                    userName: res.data.name
+                }, function () {
+                    console.log(this.state);
+                });
             });
-        });
+        }
+       
     }
 
-    ///Takes the data submitted with the form and makes a post request to the server
+    ///Takes the data submitted with the form and makes a POST request to the server
     handleSubmit(e) {
-        e.preventDefault();
-        const form = e.target;
-        const data = new FormData(form);
-        const postTitle = data.get('title');
-        const postContent = data.get('content');
-        const postType = data.get('postType');
-        this.setState({
-            redirect: true
-        })
-        const newPost = {
-            title: postTitle,
-            content: postContent,
-            postType: postType,
-            author: this.state.userId
+        if (this.props.user) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            const postTitle = data.get('title');
+            const postContent = data.get('content');
+            const postType = data.get('postType');
+            this.setState({
+                redirect: true
+            })
+            const newPost = {
+                title: postTitle,
+                content: postContent,
+                postType: postType,
+                author: this.state.userId
+            }
+            console.log(newPost);
+    
+            axios({
+                method: 'post',
+                url: '/api/posts',
+                data: newPost
+            })
+            .then(res => {
+                // window.location.reload();
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+        } else {
+            alert('You must be signed in to do that!');
         }
-        console.log(newPost);
-
-        axios({
-            method: 'post',
-            url: '/api/posts',
-            data: newPost
-        })
-        .then(res => {
-            // window.location.reload();
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
+       
     }
 
 
@@ -71,7 +79,7 @@ class PostForm extends Component {
                     <textarea type="text" className="post-content-input" name="content" placeholder="Post content goes here ..."></textarea>
                     <input type="hidden" name="postType" value="user" />
                     <div className="form-btn-container">
-                        <button type="submit" className="post-submit-btn">Create Post</button>
+                        <button type="submit" className="post-submit-btn">Add</button>
                     </div>
                 </form>
                 </div>
