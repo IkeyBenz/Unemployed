@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../PostForm.css';
+import TopNav from './TopNav';
 
 class PostForm extends Component {
     constructor(props) {
@@ -69,6 +70,8 @@ class PostForm extends Component {
             window.location.replace('/');
         }
         return (
+            <div className="outer-post">
+            <TopNav { ...this.props } />
             <div className="PostForm-container">
                 <h2 className="create-post-header">Have Something To Say?</h2>
                 <div className="form-div">
@@ -84,6 +87,8 @@ class PostForm extends Component {
                 </form>
                 </div>
             </div>
+            </div>
+            
         )
     }
 }
