@@ -36,10 +36,6 @@ class Signup extends Component{
             this.setState({
                 formSubmitted: true,
                 user: true
-         },function() {
-             this.props.dataToParent(this.state.user)
-             console.log('User on signin component ===> ' + this.state.user);
- 
          })
     
             axios({
