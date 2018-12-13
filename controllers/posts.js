@@ -7,17 +7,9 @@ const User = require('../models/user');
 // GET all posts
 posts.get('/', (req, res) => {
     Post.find({}).populate('author').then(posts => {
-<<<<<<< HEAD
-        console.log(posts[0])
-        return res.json(posts)
-    }).catch(console.error)
-})
-
-=======
         return res.json(posts);
     }).catch(console.error);
 });
->>>>>>> 3b462ca0e08c4789767cfb5a312acc0b82a47763
 
 // CREATE a post
 posts.post('/', (req, res) => {
@@ -51,9 +43,6 @@ posts.get('/:id', (req, res) => {
         }).then(post => {
             res.json(post);
         }).catch(err => {
-<<<<<<< HEAD
-            console.log(err.message);
-=======
             res.status(400).json({ error: err.message });
         });
 });
@@ -93,7 +82,6 @@ posts.delete('/:id', (req, res) => {
             } else {
                 res.status(400).json({ error: 'Unauthorized to delete this post' });
             }
->>>>>>> 3b462ca0e08c4789767cfb5a312acc0b82a47763
         });
     } else {
         res.status(400).json({ error: 'Not logged in' });
