@@ -60,7 +60,11 @@ class App extends Component {
             )
         } }/>
 
-        <Route path='/post-form' exact component={ PostForm } />
+        <Route path='/post-form' exact render={ () => {
+            return (
+                <PostForm { ...this.state } />
+            )
+        }} />
         <Route path='/posts/:postId' exact render={ () => {
             return(
                 <Post { ...this.state } />

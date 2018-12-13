@@ -7,6 +7,7 @@ const posts = require('express').Router();
 // // TODO: need to setup industries so feed can be customized to certain industry
 posts.get('/', (req, res) => {
     Post.find({}).populate('author').then(posts => {
+        console.log(posts[0])
         return res.json(posts)
     }).catch(console.error)
 })
@@ -37,7 +38,6 @@ posts.get('/:id', (req, res) => {
             res.json(post);
         }).catch(err => {
             console.log(err.message);
-            console.log('Poopy butt face')
         });
 });
 

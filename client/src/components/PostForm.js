@@ -29,7 +29,6 @@ class PostForm extends Component {
 
     ///Takes the data submitted with the form and makes a POST request to the server
     handleSubmit(e) {
-        if (this.props.user) {
             e.preventDefault();
             const form = e.target;
             const data = new FormData(form);
@@ -58,9 +57,6 @@ class PostForm extends Component {
             .catch(err => {
                 console.log(err.message)
             })
-        } else {
-            alert('You must be signed in to do that!');
-        }
        
     }
 

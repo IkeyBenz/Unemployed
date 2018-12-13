@@ -11,7 +11,7 @@ class PreviewPost extends Component {
             <div className="PreviewPost" key={ this.props._id } onClick={ () => this.props.method(this.props._id) }>
                 <div className="post-header">
                     <h2 className="post-title">{ this.props.title }</h2>
-                    <small className="post-date">mm/dd/yyyy</small>
+                    <small className="post-date">{ this.props.createdAt}</small>
                 </div>
                 <p className="post-content">{ this.props.content }</p>
                 <div className="posts-footer">
