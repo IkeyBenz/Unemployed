@@ -16,6 +16,7 @@ class App extends Component {
         super(props);
         this.state = {
             user: false,
+            curUser: null,
             ...this.props
         }
         // this.signinUser = this.signinUser.bind(this);
@@ -29,7 +30,8 @@ class App extends Component {
         axios('/api/auth/currentUser').then(res => {
             if (res.data) {
                 this.setState({
-                    user: true
+                    user: true,
+                    curUser: res.data._id
                 });
             }
         });

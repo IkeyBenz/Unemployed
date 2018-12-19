@@ -13,9 +13,10 @@ posts.get('/', (req, res) => {
 
 // CREATE a post
 posts.post('/', (req, res) => {
+
     if (req.user) {
-        if (String(req.user._id) == String(req.body.author)) {
             const newPost = new Post(req.body);
+            console.log(newPost)
             newPost.save().then(() => {
                 User.findByIdAndUpdate(req.user._id, { $push: { posts: newPost } }).then(user => {
                     res.json({ message: 'Post successfully created' });
@@ -23,9 +24,6 @@ posts.post('/', (req, res) => {
             }).catch(error => {
                 res.status(400).json({ error: error.message });
             });
-        } else {
-            res.status(400).json({ error: 'Unauthorized' });
-        }
     } else {
         res.status(400).json({ error: 'Not logged in' });
     }

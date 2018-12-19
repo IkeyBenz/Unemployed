@@ -21,7 +21,6 @@ class PostFeed extends Component {
     }
 
     componentDidMount() {
-        console.log('mounted')
         this.fetchPosts();
 
         
@@ -35,12 +34,8 @@ class PostFeed extends Component {
             this.setState({
                 posts,
                 isLoading: false
-            },
-            function() {
-                console.log(posts[0])
-            });
-        })
-        .catch(err => console.log(err))
+            })
+        }).catch(err => console.log(err))
     }
 
     goToPost(key) {
